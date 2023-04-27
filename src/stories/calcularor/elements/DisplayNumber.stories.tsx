@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { DisplayNumber } from "@/features/calculator/components/presentational/DisplayNumber";
+import { DisplayNumber } from "@/features/calculator/components/presentational/elements/DisplayNumber";
 
 export default {
-  title: "features/calculator/presentational/DisplayNumber",
+  title: "features/calculator/presentational/elements/DisplayNumber",
   component: DisplayNumber,
   parameters: {
     backgrounds: {

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { DisplayNumber } from "@/features/calculator/components/presentational/DisplayNumber";
+import { DisplayNumber } from "@/features/calculator/components/presentational/elements/DisplayNumber";
 import { PrimaryButton } from "@/features/calculator/components/presentational/buttons/PrimaryButton";
 import {
   IconDivide,
