@@ -1,38 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Overview
+
+このプロジェクトは Next.js Typescriptの練習用です。
+便利系のツールの開発をしながら、ディレクトリ構成やテストの書き方などを学習していきます。
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Getting Started
 
-First, run the development server:
+このセクションでは、プロジェクトの要件と開発環境の設定方法を説明します。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Installation
+
+1. リポジトリをクローンするかダウンロードしてください。
+
+```
+git clone https://github.com/kawabata324/ts-plactice.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. 必要なライブラリやモジュールをインストールしてください。
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+yarn install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Usage
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+プロジェクトの使用方法について説明します。コードの詳細な例と実行方法を提供してください。
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+開発環境の立ち上げ
+```
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+単体テストの実行
+```
+yarn test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+storybookの立ち上げ
+```
+yarn storybook
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Screenshots
 
-## Deploy on Vercel
+URL: https://ts-plactice-pebz.vercel.app/calculator
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<img src="public/images/calculator.jpg" alt="Calculator" width="200">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Contact
+
+質問やバグレポートについては、以下の方法でお問い合わせください。
+
+- GitHub Issues: https://github.com/kawabata324/ts-plactice/issues
+- Twitter: https://twitter.com/haru1125632
