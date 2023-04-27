@@ -5,7 +5,7 @@ import { CalculatorElement } from "@/features/calculator/types/CalculatorElement
 describe("useViewModel", () => {
   it("初期値は0になっていること", () => {
     const { result } = renderHook(() => useViewModel());
-    expect(result.current.state.displayNumber).toBe("0");
+    expect(result.current.state.displayResult).toBe("0");
   });
 
   describe("clickElement", () => {
@@ -15,9 +15,9 @@ describe("useViewModel", () => {
         act(() => result.current.action.clickElement(value));
 
       clickElement("1");
-      expect(result.current.state.displayNumber).toBe("1");
+      expect(result.current.state.displayResult).toBe("1");
       clickElement("AC");
-      expect(result.current.state.displayNumber).toBe("0");
+      expect(result.current.state.displayResult).toBe("0");
     });
 
     it("1 + 2 = をすると 3 になること", () => {
@@ -30,7 +30,7 @@ describe("useViewModel", () => {
       clickElement("2");
       clickElement("=");
 
-      expect(result.current.state.displayNumber).toBe("3");
+      expect(result.current.state.displayResult).toBe("3");
     });
 
     it("4 - 2 = をすると 2 になること", () => {
@@ -43,7 +43,7 @@ describe("useViewModel", () => {
       clickElement("2");
       clickElement("=");
 
-      expect(result.current.state.displayNumber).toBe("2");
+      expect(result.current.state.displayResult).toBe("2");
     });
 
     it("3 × 5 = をすると 15 になること", () => {
@@ -56,7 +56,7 @@ describe("useViewModel", () => {
       clickElement("5");
       clickElement("=");
 
-      expect(result.current.state.displayNumber).toBe("15");
+      expect(result.current.state.displayResult).toBe("15");
     });
 
     it("8 ÷ 4 = をすると 2 になること", () => {
@@ -69,7 +69,7 @@ describe("useViewModel", () => {
       clickElement("4");
       clickElement("=");
 
-      expect(result.current.state.displayNumber).toBe("2");
+      expect(result.current.state.displayResult).toBe("2");
     });
 
     it("7 % 3 = をすると 1 になること", () => {
@@ -82,7 +82,7 @@ describe("useViewModel", () => {
       clickElement("3");
       clickElement("=");
 
-      expect(result.current.state.displayNumber).toBe("1");
+      expect(result.current.state.displayResult).toBe("1");
     });
 
     it("小数点を含む計算もできること", () => {
@@ -99,7 +99,7 @@ describe("useViewModel", () => {
       clickElement("5");
       clickElement("=");
 
-      expect(result.current.state.displayNumber).toBe("0.7");
+      expect(result.current.state.displayResult).toBe("0.7");
     });
 
     it("plus minusを押すと正負が反転し、その後正しく計算できること", () => {
@@ -109,19 +109,19 @@ describe("useViewModel", () => {
 
       clickElement("2");
       clickElement("±");
-      expect(result.current.state.displayNumber).toBe("-2");
+      expect(result.current.state.displayResult).toBe("-2");
 
       clickElement("±");
-      expect(result.current.state.displayNumber).toBe("2");
+      expect(result.current.state.displayResult).toBe("2");
 
       clickElement("±");
-      expect(result.current.state.displayNumber).toBe("-2");
+      expect(result.current.state.displayResult).toBe("-2");
 
       clickElement("/");
       clickElement("2");
       clickElement("=");
 
-      expect(result.current.state.displayNumber).toBe("-1");
+      expect(result.current.state.displayResult).toBe("-1");
     });
   });
 });

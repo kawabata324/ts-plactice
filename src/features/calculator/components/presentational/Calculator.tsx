@@ -45,7 +45,7 @@ import {
 import { CalculatorElement } from "@/features/calculator/types/CalculatorElement";
 
 type Props = {
-  displayNum: string;
+  displayNum: number;
   onClick: (element: CalculatorElement) => void;
 };
 export const Calculator: FC<Props> = ({ displayNum, onClick }) => {

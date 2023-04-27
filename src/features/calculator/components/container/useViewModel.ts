@@ -25,7 +25,7 @@ import {
 import { evaluate } from "mathjs";
 
 type State = {
-  displayNumber: string;
+  displayResult: string;
 };
 
 type Action = {
@@ -35,7 +35,7 @@ type Action = {
 const LIMIT_MAX_LENGTH = 10;
 export const useViewModel: ViewModelFunc<State, Action> = () => {
   const [formula, setFormula] = useState("");
-  const [displayNumber, setDisplayNumber] = useState("0");
+  const [displayResult, setDisplayResult] = useState("0");
   const getPrevElement = () => formula.slice(-1);
 
   const clickElement = (element: CalculatorElement) => {
@@ -78,25 +78,25 @@ export const useViewModel: ViewModelFunc<State, Action> = () => {
 
   const reset = () => {
     setFormula("");
-    setDisplayNumber("0");
+    setDisplayResult("0");
   };
 
   const calculate = () => {
     try {
       const newDisplayNumber = evaluate(formula);
-      setDisplayNumber(String(newDisplayNumber));
+      setDisplayResult(String(newDisplayNumber));
     } catch (e) {
       return e;
     }
   };
 
   const addNaturalNumber = (element: CalculatorElement) => {
-    if (displayNumber.toLocaleString().length >= LIMIT_MAX_LENGTH) return;
+    if (displayResult.toLocaleString().length >= LIMIT_MAX_LENGTH) return;
     if (isNumber(getPrevElement()) || getPrevElement() === DECIMAL_POINT) {
-      setDisplayNumber(String(displayNumber) + element);
+      setDisplayResult(String(displayResult) + element);
       setFormula((prev) => prev + element);
     } else {
-      setDisplayNumber(element);
+      setDisplayResult(element);
       setFormula((prev) => prev + element);
     }
   };
@@ -108,26 +108,26 @@ export const useViewModel: ViewModelFunc<State, Action> = () => {
   };
 
   const execPlusMinus = () => {
-    if (isNegativeNumber(Number(displayNumber))) {
-      const newDisplayNumber = Math.abs(Number(displayNumber));
-      setDisplayNumber(String(newDisplayNumber));
-      setFormula((prev) => prev.replace(`${String(displayNumber)}`, `${newDisplayNumber}`));
+    if (isNegativeNumber(Number(displayResult))) {
+      const newDisplayNumber = Math.abs(Number(displayResult));
+      setDisplayResult(String(newDisplayNumber));
+      setFormula((prev) => prev.replace(`${String(displayResult)}`, `${newDisplayNumber}`));
     } else {
-      const newDisplayNumber = Number(displayNumber) * -1;
-      setDisplayNumber(String(newDisplayNumber));
-      setFormula((prev) => prev.replace(`${String(displayNumber)}`, `${newDisplayNumber}`));
+      const newDisplayNumber = Number(displayResult) * -1;
+      setDisplayResult(String(newDisplayNumber));
+      setFormula((prev) => prev.replace(`${String(displayResult)}`, `${newDisplayNumber}`));
     }
   };
 
   const execDecimalPoint = () => {
     if (!isNumber(getPrevElement())) return;
-    setDisplayNumber(String(displayNumber) + DECIMAL_POINT);
+    setDisplayResult(String(displayResult) + DECIMAL_POINT);
     setFormula((prev) => prev + DECIMAL_POINT);
   };
 
   return {
     state: {
-      displayNumber,
+      displayResult,
     },
     action: {
       clickElement,

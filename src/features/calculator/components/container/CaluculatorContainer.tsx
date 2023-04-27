@@ -4,8 +4,8 @@ import { useViewModel } from "@/features/calculator/components/container/useView
 
 export const CalculatorContainer: FC = () => {
   const {
-    state: { displayNumber },
+    state: { displayResult },
     action: { clickElement },
   } = useViewModel();
-  return <Calculator displayNum={displayNumber} onClick={clickElement} />;
+  return <Calculator displayNum={Number(displayResult)} onClick={clickElement} />;
 };
