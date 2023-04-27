@@ -19,3 +19,9 @@ export const Primary: Story = {
     num: 1200,
   },
 };
+
+export const LargeNumber: Story = {
+  args: {
+    num: 123456789,
+  },
+};
