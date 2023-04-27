@@ -10,7 +10,7 @@ export const ZeroButton: FC<Props> = ({ onClickZero }) => {
     <PrimaryButton
       element="0"
       bgColor="bg-gray-700"
-      className={`rounded-3xl w-full justify-start pl-5`}
+      className={`rounded-3xl w-full justify-start pl-3`}
       onClick={onClickZero}
     >
       <IconNumber0 color="white" />
