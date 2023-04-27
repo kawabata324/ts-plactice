@@ -1,6 +1,6 @@
 import { ViewModelFunc } from "@/types/viewModelFunc";
 import { CalculatorElement } from "@/features/calculator/types/CalculatorElement";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import {
   AC,
   DECIMAL_POINT,
@@ -22,6 +22,7 @@ import {
   TWO,
   ZERO,
 } from "@/features/calculator/constants/calculatorElements";
+import { evaluate } from "mathjs";
 
 type State = {
   displayNumber: string;
@@ -35,7 +36,7 @@ const LIMIT_MAX_LENGTH = 10;
 export const useViewModel: ViewModelFunc<State, Action> = () => {
   const [formula, setFormula] = useState("");
   const [displayNumber, setDisplayNumber] = useState("0");
-  const getPrevElement = useCallback(() => formula.slice(-1), [formula]);
+  const getPrevElement = () => formula.slice(-1);
 
   const clickElement = (element: CalculatorElement) => {
     switch (element) {
@@ -82,10 +83,10 @@ export const useViewModel: ViewModelFunc<State, Action> = () => {
 
   const calculate = () => {
     try {
-      const newDisplayNumber = eval(formula);
-      setDisplayNumber(newDisplayNumber);
+      const newDisplayNumber = evaluate(formula);
+      setDisplayNumber(String(newDisplayNumber));
     } catch (e) {
-      return;
+      return e;
     }
   };
 
