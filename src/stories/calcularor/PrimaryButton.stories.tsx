@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { PrimaryButton } from "@/features/calculator/presentational/button/PrimaryButton";
+import { PrimaryButton } from "@/features/calculator/presentational/buttons/PrimaryButton";
 import { IconNumber1, IconPlus, IconPlusMinus } from "@tabler/icons-react";
 import { DecimalPoint } from "@/features/calculator/presentational/elements/DecimalPoint";
 
 export default {
-  title: "features/calculator/presentational/PrimaryButton",
+  title: "features/calculator/presentational/buttons/PrimaryButton",
   component: PrimaryButton,
 } satisfies Meta<typeof PrimaryButton>;
 
