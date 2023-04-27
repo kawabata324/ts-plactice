@@ -5,7 +5,7 @@ import { CalculatorElement } from "@/features/calculator/types/CalculatorElement
 type BgColor = "bg-orange-500" | "bg-gray-300" | "bg-gray-700";
 
 type Props = {
-  onClick: (element: string) => void;
+  onClick: (element: CalculatorElement) => void;
   bgColor: BgColor;
   element: CalculatorElement;
   className?: string;

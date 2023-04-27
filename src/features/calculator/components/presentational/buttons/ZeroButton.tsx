@@ -2,9 +2,10 @@ import { FC } from "react";
 import { PrimaryButton } from "@/features/calculator/components/presentational/buttons/PrimaryButton";
 import { IconNumber0 } from "@tabler/icons-react";
 import { ZERO } from "@/features/calculator/constants/calculatorElements";
+import { CalculatorElement } from "@/features/calculator/types/CalculatorElement";
 
 type Props = {
-  onClickZero: (element: string) => void;
+  onClickZero: (element: CalculatorElement) => void;
 };
 export const ZeroButton: FC<Props> = ({ onClickZero }) => {
   return (
