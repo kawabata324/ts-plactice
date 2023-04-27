@@ -21,7 +21,7 @@ export const PrimaryButton: FC<PropsWithChildren<Props>> = ({
   return (
     <button
       className={overrideTailwindClasses(
-        `${bgColor} rounded-half w-16 h-16 flex justify-center items-center ${className}`
+        `${bgColor} rounded-half w-20 h-20 flex justify-center items-center ${className}`
       )}
       onClick={() => onClick(element)}
     >
