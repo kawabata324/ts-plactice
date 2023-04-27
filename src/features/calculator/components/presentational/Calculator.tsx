@@ -42,10 +42,11 @@ import {
   THREE,
   TWO,
 } from "@/features/calculator/constants/calculatorElements";
+import { CalculatorElement } from "@/features/calculator/types/CalculatorElement";
 
 type Props = {
-  displayNum: number;
-  onClick: (element: string) => void;
+  displayNum: string;
+  onClick: (element: CalculatorElement) => void;
 };
 export const Calculator: FC<Props> = ({ displayNum, onClick }) => {
   return (
