@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Calculator } from "@/features/calculator/presentational/Calculator";
+import { Calculator } from "@/features/calculator/components/presentational/Calculator";
 
 export default {
   title: "features/calculator/presentational/Calculator",

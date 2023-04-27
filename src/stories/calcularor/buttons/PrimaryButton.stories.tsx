@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { PrimaryButton } from "@/features/calculator/presentational/buttons/PrimaryButton";
+import { PrimaryButton } from "@/features/calculator/components/presentational/buttons/PrimaryButton";
 import { IconNumber1, IconPlus, IconPlusMinus } from "@tabler/icons-react";
-import { DecimalPoint } from "@/features/calculator/presentational/elements/DecimalPoint";
+import { DecimalPoint } from "@/features/calculator/components/presentational/elements/DecimalPoint";
 
 export default {
   title: "features/calculator/presentational/buttons/PrimaryButton",
