@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { ZeroButton } from "@/features/calculator/presentational/buttons/ZeroButton";
+import { ZeroButton } from "@/features/calculator/components/presentational/buttons/ZeroButton";
 
 export default {
   title: "features/calculator/presentational/buttons/ZeroButton",
