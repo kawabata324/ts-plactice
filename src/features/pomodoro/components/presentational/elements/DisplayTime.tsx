@@ -5,5 +5,5 @@ type Props = {
 };
 
 export const DisplayTime: FC<Props> = ({ time }) => {
-  return <h1 className="text-9xl text-white font-mono font-bold">{time}</h1>;
+  return <h1 className="text-6xl text-white font-mono font-bold">{time}</h1>;
 };
