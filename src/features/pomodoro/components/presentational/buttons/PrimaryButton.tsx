@@ -13,7 +13,7 @@ export const PrimaryButton: FC<Props> = ({ onClick, label, disabled, className }
     <button
       disabled={disabled}
       className={overrideTailwindClasses(
-        `px-12 py-4 flex justify-center items-center text-white rounded-md shadow-2xl ${className}`
+        `text-sm w-32 p-3 flex justify-center items-center text-white rounded-md shadow-2xl ${className}`
       )}
       onClick={() => onClick()}
     >
