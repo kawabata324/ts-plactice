@@ -1,5 +1,7 @@
 import { ViewModelFunc } from "@/types/viewModelFunc";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { CustomToast } from "@/features/pomodoro/components/presentational/CustomToast";
 
 type State = {
   time: string;
@@ -13,12 +15,15 @@ type Action = {
   clickReset: () => void;
 };
 
-const POMODORO = 3;
+const POMODORO = 25 * 60;
 export const useViewModel: ViewModelFunc<State, Action> = () => {
   const [duration, setDuration] = useState(POMODORO);
   const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null);
+  const [messageSoundUrl, setMessageSoundUrl] = useState<string>("/sounds/iphone.mp3");
+
   const time = `${Math.floor(duration / 60)}:${("0" + (duration % 60)).slice(-2)}`;
   const progressPercent = 100 - (duration / POMODORO) * 100;
+  const messageAudio = typeof window !== "undefined" && new Audio(messageSoundUrl);
 
   const clickStart = () => {
     const timerId = setInterval(() => {
@@ -48,25 +53,36 @@ export const useViewModel: ViewModelFunc<State, Action> = () => {
     if (duration === 0) {
       finishPomodoro();
     }
+
+    () => {
+      stopAudio(messageAudio);
+    };
   }, [duration]);
 
-  useEffect(() => {
-    (async () => {
-      const result = await Notification.requestPermission();
-
-      console.log(result);
-    })();
-  }, []);
-
-  const finishPomodoro = () => {
+  const finishPomodoro = async () => {
     stopTimer();
-    // const img = "/to-do-notifications/img/icon-128.png";
-    const text = "通知テスト";
-    const notification = new Notification("To do list", { body: text });
-
-    // TODO: 通知
-    console.log("finish pomodoro");
+    await startAudio(messageAudio);
     setDuration(POMODORO);
+
+    toast.custom((t) =>
+      CustomToast(t, (t) => {
+        stopAudio(messageAudio);
+        toast.dismiss(t.id);
+      })
+    );
+  };
+
+  const stopAudio = (audio: false | HTMLAudioElement) => {
+    if (audio instanceof HTMLAudioElement) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  };
+
+  const startAudio = async (audio: false | HTMLAudioElement) => {
+    if (audio instanceof HTMLAudioElement) {
+      await audio.play();
+    }
   };
 
   return {
