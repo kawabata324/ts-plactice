@@ -21,7 +21,9 @@ export const Primary: Story = {
     buttonHandlers: {
       onClickReset: () => {},
       onClickStart: () => {},
+      onClickStop: () => {},
     },
+    isTimerStart: false,
   },
 };
 
@@ -32,6 +34,8 @@ export const StopButton: Story = {
     buttonHandlers: {
       onClickReset: () => {},
       onClickStop: () => {},
+      onClickStart: () => {},
     },
+    isTimerStart: true,
   },
 };
