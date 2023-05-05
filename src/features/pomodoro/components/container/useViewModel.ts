@@ -2,6 +2,7 @@ import { ViewModelFunc } from "@/types/viewModelFunc";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { CustomToast } from "@/features/pomodoro/components/presentational/CustomToast";
+import { useAudio } from "@/features/pomodoro/components/container/hooks/useAudio";
 
 type State = {
   time: string;
@@ -17,13 +18,16 @@ type Action = {
 
 const POMODORO = 25 * 60;
 export const useViewModel: ViewModelFunc<State, Action> = () => {
+  // TODO: カスタマイズできるようにする
+  // local storageを使って保存した設定を持ってくる
+  const {
+    action: { audioPlay, audioStop },
+  } = useAudio("/sounds/iphone.mp3");
   const [duration, setDuration] = useState(POMODORO);
   const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null);
-  const [messageSoundUrl, setMessageSoundUrl] = useState<string>("/sounds/iphone.mp3");
 
   const time = `${Math.floor(duration / 60)}:${("0" + (duration % 60)).slice(-2)}`;
   const progressPercent = 100 - (duration / POMODORO) * 100;
-  const messageAudio = typeof window !== "undefined" && new Audio(messageSoundUrl);
 
   const clickStart = () => {
     const timerId = setInterval(() => {
@@ -38,8 +42,7 @@ export const useViewModel: ViewModelFunc<State, Action> = () => {
   };
 
   const clickReset = () => {
-    stopTimer();
-    setDuration(POMODORO);
+    restTimer();
   };
 
   const stopTimer = () => {
@@ -49,40 +52,31 @@ export const useViewModel: ViewModelFunc<State, Action> = () => {
     }
   };
 
+  const restTimer = () => {
+    stopTimer();
+    setDuration(POMODORO);
+  };
+
   useEffect(() => {
     if (duration === 0) {
       finishPomodoro();
     }
 
     () => {
-      stopAudio(messageAudio);
+      audioStop();
     };
   }, [duration]);
 
   const finishPomodoro = async () => {
-    stopTimer();
-    await startAudio(messageAudio);
-    setDuration(POMODORO);
+    restTimer();
+    await audioPlay();
 
     toast.custom((t) =>
       CustomToast(t, (t) => {
-        stopAudio(messageAudio);
+        audioStop();
         toast.dismiss(t.id);
       })
     );
-  };
-
-  const stopAudio = (audio: false | HTMLAudioElement) => {
-    if (audio instanceof HTMLAudioElement) {
-      audio.pause();
-      audio.currentTime = 0;
-    }
-  };
-
-  const startAudio = async (audio: false | HTMLAudioElement) => {
-    if (audio instanceof HTMLAudioElement) {
-      await audio.play();
-    }
   };
 
   return {
