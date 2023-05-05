@@ -38,8 +38,7 @@ export const useViewModel: ViewModelFunc<State, Action> = () => {
   };
 
   const clickReset = () => {
-    stopTimer();
-    setDuration(POMODORO);
+    restTimer();
   };
 
   const stopTimer = () => {
@@ -47,6 +46,11 @@ export const useViewModel: ViewModelFunc<State, Action> = () => {
       clearInterval(timerId);
       setTimerId(null);
     }
+  };
+
+  const restTimer = () => {
+    stopTimer();
+    setDuration(POMODORO);
   };
 
   useEffect(() => {
@@ -60,9 +64,8 @@ export const useViewModel: ViewModelFunc<State, Action> = () => {
   }, [duration]);
 
   const finishPomodoro = async () => {
-    stopTimer();
+    restTimer();
     await startAudio(messageAudio);
-    setDuration(POMODORO);
 
     toast.custom((t) =>
       CustomToast(t, (t) => {
